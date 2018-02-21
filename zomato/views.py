@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from .forms import UserForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from .models import UserProfile
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def SignUp(request,*args,**kwargs):
@@ -16,17 +17,26 @@ def SignUp(request,*args,**kwargs):
 			user.save()
 			name = form.cleaned_data.get('name')
 
+			user = authenticate(username=username,password=password)
+			login(request,user)
+
 			prof_instance = UserProfile(user=user,name=name,profile_picture=request.FILES['profile_picture'])
 			prof_instance.save()
+
 
 			return redirect('/home')
 	else:
 		form = UserForm()
 	return render(request, 'signup.html', {'form': form})
 
-
+@login_required(login_url='/login')
 def home(request,*args,**kwargs):
-	return render(request,'home.html')
+
+	obj = UserProfile.objects.get(user=request.user)
+	context = {
+		'user':obj
+	}
+	return render(request,'base.html',context)
 
 def login_user(request,*args,**kwargs):
 	context = {
@@ -44,5 +54,10 @@ def login_user(request,*args,**kwargs):
 		}
 
 	return render(request,'login.html',context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/home')
 
 

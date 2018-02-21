@@ -16,11 +16,12 @@ Including another URLconf
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from zomato.views import SignUp,home,login_user
+from zomato.views import SignUp,home,login_user,logout_view
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^signup/',SignUp),
-    url(r'^home/',home),
-    url(r'login/',login_user)
+    url(r'^signup/$',SignUp),
+    url(r'^home/$',home),
+    url(r'login/$',login_user),
+    url(r'^logout/$',logout_view, name='logout')
 ]

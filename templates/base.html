@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load staticfiles %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="icon" href="static/img/favicon.ico">
+	<link rel="stylesheet" href="{% static "plugins/bootstrap/css/bootstrap.min.css" %}">
+	<link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/plugins/pace/pace-theme-minimal.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+	<link rel="stylesheet" href="{% static "css/skins.css" %}">
+</head>
+
+<body class="skin-dark">
+	<header class="header">
+		<div class="logo">
+			<img src="{% static "img/logo.png" %}" alt="kertas" height="20">
+		</div>
+		<nav class="navbar navbar-right navbar-static-top" role="navigation">
+				<div style="float: right;">
+				<ul class="nav navbar-nav">
+					<li class="dropdown profile-menu">
+						<a href="{% url 'logout' %}">
+							<i class="fa fa-power-off"></i>
+							<span class="username">Logout</span>
+						</a>
+					</li>
+				</ul>
+				</div>
+		</nav>
+	</header>
+	
+	<div class="wrapper row-offcanvas row-offcanvas-left">
+		<aside class="left-side sidebar-offcanvas">
+			<section class="sidebar">
+				<div class="user-panel" style="margin-bottom:30px;">
+					<div class="pull-left image">
+						<img src="/static/{{ user.profile_picture }}" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>{{ user.name }}</p>
+					</div>
+				</div>
+			</section>
+		</aside>
+
+		<!--<aside class="right-side">
+					{% block content %}
+
+					{% endblock content %}
+		</aside>
+		<div class="scroll-to-top"></div>-->
+	</div>
+
+</body>
+</html>
