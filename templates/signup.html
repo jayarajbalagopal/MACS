@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    {% load staticfiles %}
+		<meta charset="utf-8">
+		<title>zomato</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="container" style="text-align: center;margin: auto;padding: auto;padding-top:10px;">
+			<div class="row">
+				<div class="text-center col-sm-12">
+					<h3>Signup</h3>
+					<div class="col-sm-4 col-sm-offset-4"style="margin-top:20px;">
+						<form method="POST" action="." enctype="multipart/form-data">{%csrf_token%}
+							{{form.as_p}}
+							<input type="submit" value="register" class="button col-sm-12" style="margin-top:20">
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
