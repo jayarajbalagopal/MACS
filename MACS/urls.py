@@ -17,6 +17,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from zomato.views import SignUp,home,login_user,logout_view
+from django.conf.urls.static import static
+from MACS import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -25,3 +27,4 @@ urlpatterns = [
     url(r'login/$',login_user),
     url(r'^logout/$',logout_view, name='logout')
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
